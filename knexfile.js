@@ -10,15 +10,16 @@ module.exports = {
   },
 
   staging: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      host: 'hansken.db.elephantsql.com',
+      database: 'fgqcggyv',
+      user:     'fgqcggyv',
+      password: 'iVAqmm0bOFCIU9gSD4vTU1rYSDV50D8H'
     },
     pool: {
-      min: 2,
-      max: 10
+      min: 1,
+      max: 4
     },
     migrations: {
       tableName: 'knex_migrations'
@@ -26,8 +27,9 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
+      host: 'hansken.db.elephantsql.com',
       database: 'my_db',
       user:     'username',
       password: 'password'
