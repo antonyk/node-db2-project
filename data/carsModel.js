@@ -1,9 +1,9 @@
-
 const { Model } = require('objection');
+const context = require('./dbContext');
 
 class Car extends Model {
   static get tableName() {
-    return 'car';
+    return 'cars';
   }
   static get jsonSchema() {
 
@@ -21,4 +21,33 @@ class Car extends Model {
       }
     }
   }
+}
+
+const table = context('cars');
+
+function getSet(filter) {
+  if (filter) {
+    throw 'not implemented';
+  } else {
+    return all();
+  }
+}
+function getOne() {}
+function all() {
+  return table;
+}
+function find() {}
+function findById() {}
+function create() {}
+function update() {}
+function remove() {}
+
+
+module.exports = {
+  Car,
+  getSet,
+  getOne,
+  create,
+  update,
+  remove,
 }

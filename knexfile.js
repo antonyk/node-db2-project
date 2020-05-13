@@ -1,6 +1,7 @@
 // Update with your config settings.
+const pgConnectionString = process.env.DB_URL ||  'postgres://myuser:mypass@localhost:5432/lambda'
 
-module.exports = {
+ module.exports = {
 
   development: {
     client: 'sqlite3',
@@ -11,12 +12,7 @@ module.exports = {
 
   staging: {
     client: 'pg',
-    connection: {
-      host: 'hansken.db.elephantsql.com',
-      database: 'fgqcggyv',
-      user:     'fgqcggyv',
-      password: 'iVAqmm0bOFCIU9gSD4vTU1rYSDV50D8H'
-    },
+    connection: pgConnectionString,
     pool: {
       min: 1,
       max: 3
