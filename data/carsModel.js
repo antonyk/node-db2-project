@@ -1,5 +1,5 @@
 const { Model } = require('objection');
-const context = require('./dbContext');
+const db = require('./dbContext');
 
 class Car extends Model {
   static get tableName() {
@@ -23,7 +23,7 @@ class Car extends Model {
   }
 }
 
-const table = context('cars');
+// const table = context('cars');
 
 function getSet(filter) {
   if (filter) {
@@ -32,15 +32,40 @@ function getSet(filter) {
     return all();
   }
 }
-function getOne() {}
-function all() {
-  return table;
+function getOne(id) {
+  return db('cars').where({id}).first()
 }
+function all() {
+  return db('cars');
+}
+
 function find() {}
 function findById() {}
-function create() {}
-function update() {}
-function remove() {}
+
+function create(data) {
+  return db('cars').insert(data, 'id')
+    .then(result => {
+      console.log("insert: ", result)
+      if (result && result.length>0)
+        return getOne(result[0])
+      else
+        return null;
+    })
+}
+
+function update(id, data) {
+  return db('cars').update(data, 'id').where({id})
+    .then(result => {
+      if (result && result.length>0)
+        return getOne(result[0])
+      else
+        return null;
+    })
+}
+
+function remove(id) {
+  return db('cars').where({id}).del();
+}
 
 
 module.exports = {
